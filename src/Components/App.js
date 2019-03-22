@@ -25,13 +25,22 @@ class App extends Component {
   }
 
   updateProgress = (index, eachButton) => {
-    console.log("in click");
+    console.log("in click", eachButton, index);
+    const toBeUpdatedLevel =
+      this.state.currentLevel.replace("ProgressLevel", "").replace(",", "") - 1;
+    const updatedBar = this.state.data.bars.filter((eachBar, index) => {
+      if (index === toBeUpdatedLevel) return eachBar + eachButton;
+    });
+
+    console.log("updatedBar", toBeUpdatedLevel, updatedBar);
   };
+
   setCurrentLevel = level => {
     this.setState({
       currentLevel: `ProgressLevel${level}`
     });
   };
+
   render() {
     return (
       <div>
