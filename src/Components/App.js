@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import DisplayBar from "./DisplayBar";
-import DisplayButtons from "./DisplayButtons";
+import DisplayButton from "./DisplayButton";
 import DisplayLevels from "./DisplayLevels";
 
 class App extends Component {
@@ -9,8 +9,7 @@ class App extends Component {
     super();
     this.state = {
       data: { buttons: [], bars: [], limit: 0 },
-      dataLoaded: false,
-      currentBar: null
+      currentLevel: null
     };
   }
   async componentDidMount() {
@@ -21,20 +20,38 @@ class App extends Component {
         bars: barsInfo.data.bars,
         limit: barsInfo.data.limit
       },
-      dataLoaded: true
+      currentLevel: `ProgressLevel${1}`
     });
   }
 
-  updateProgress = (event, index, eachButton) => {};
-
+  updateProgress = (index, eachButton) => {
+    console.log("in click");
+  };
+  setCurrentLevel = level => {
+    this.setState({
+      currentLevel: `ProgressLevel${level}`
+    });
+  };
   render() {
     return (
       <div>
         <div className="container">
           <h2>Basic Progress Bar</h2>
           <DisplayBar barData={this.state.data.bars} limit={this.state.limit} />
-          <DisplayButtons buttonData={this.state.data.buttons} />
-          <DisplayLevels levelsData={this.state.data.bars} />
+          {this.state.data.buttons.map((eachButton, index) => {
+            return (
+              <DisplayButton
+                eachButton={eachButton}
+                key={index}
+                updateProgress={() => this.updateProgress(eachButton, index)}
+              />
+            );
+          })}
+          <DisplayLevels
+            levelsData={this.state.data.bars}
+            setCurrentLevel={this.setCurrentLevel}
+            currentLevel={this.state.currentLevel}
+          />
         </div>
       </div>
     );

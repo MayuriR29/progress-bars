@@ -7,12 +7,17 @@ const DisplayLevels = props => {
         type="button"
         data-toggle="dropdown"
       >
-        Levels
+        {props.currentLevel}
         <span className="caret" />
       </button>
       <ul className="dropdown-menu">
         {props.levelsData.map((value, index) => {
-          return <li key={index}>{`ProgressLevel${index + 1}`}</li>;
+          return (
+            <li
+              onClick={() => props.setCurrentLevel(index + 1)}
+              key={index}
+            >{`ProgressLevel${index + 1}`}</li>
+          );
         })}
       </ul>
     </div>
