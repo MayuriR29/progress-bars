@@ -24,15 +24,20 @@ class App extends Component {
     });
   }
 
-  updateProgress = (index, eachButton) => {
-    console.log("in click", eachButton, index);
+  updateProgress = (eachButton, index) => {
     const toBeUpdatedLevel =
       this.state.currentLevel.replace("ProgressLevel", "").replace(",", "") - 1;
-    const updatedBar = this.state.data.bars.filter((eachBar, index) => {
-      if (index === toBeUpdatedLevel) return eachBar + eachButton;
+    const updatedBar = this.state.data.bars.map((eachBar, index) => {
+      if (index === toBeUpdatedLevel) {
+        let updatedValue = eachBar + eachButton;
+        return updatedValue;
+      }
+      return eachBar;
     });
 
-    console.log("updatedBar", toBeUpdatedLevel, updatedBar);
+    this.setState({
+      data: { ...this.state.data, bars: [...updatedBar] }
+    });
   };
 
   setCurrentLevel = level => {
@@ -42,6 +47,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("render this.state.data", this.state.data.bars);
     return (
       <div>
         <div className="container">
