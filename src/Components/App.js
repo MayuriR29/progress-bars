@@ -22,7 +22,6 @@ class App extends Component {
       },
       currentLevel: `ProgressLevel${1}`
     });
-    console.log("this.state.data", this.state.data);
   }
 
   updateProgress = (eachButton, index) => {
@@ -31,7 +30,6 @@ class App extends Component {
     const updatedBar = this.state.data.bars.map((eachBar, index) => {
       if (index === toBeUpdatedLevel) {
         let updatedValue = eachBar + eachButton;
-        console.log("updatedValue", updatedValue);
         if (updatedValue <= this.state.data.limit) return updatedValue;
         return this.state.data.limit;
       }
