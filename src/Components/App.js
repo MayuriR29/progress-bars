@@ -47,7 +47,6 @@ class App extends Component {
   };
 
   render() {
-    console.log("render this.state.data", this.state.data.bars);
     return (
       <div>
         <div className="container">

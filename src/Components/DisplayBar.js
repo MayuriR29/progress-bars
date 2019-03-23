@@ -12,7 +12,7 @@ const DisplayBar = props => {
           aria-valuemax={props.limit}
           style={{ width: `${value}%` }}
         >
-          <span className="sr-only">{value}% Complete</span>
+          <span className="sr">{value}%</span>
         </div>
       </div>
     );
