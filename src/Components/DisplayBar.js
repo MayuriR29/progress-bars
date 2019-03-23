@@ -10,7 +10,10 @@ const DisplayBar = props => {
           aria-valuenow={value}
           aria-valuemin="0"
           aria-valuemax={props.limit}
-          style={{ width: `${value}%` }}
+          style={{
+            width: `${value}%`,
+            backgroundColor: value >= props.limit ? "red" : "blue"
+          }}
         >
           <span className="sr">{value}%</span>
         </div>

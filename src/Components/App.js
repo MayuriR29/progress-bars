@@ -22,6 +22,7 @@ class App extends Component {
       },
       currentLevel: `ProgressLevel${1}`
     });
+    console.log("data", this.state.data);
   }
 
   updateProgress = (eachButton, index) => {
@@ -52,7 +53,10 @@ class App extends Component {
       <div>
         <div className="container">
           <h2>Basic Progress Bar</h2>
-          <DisplayBar barData={this.state.data.bars} limit={this.state.limit} />
+          <DisplayBar
+            barData={this.state.data.bars}
+            limit={this.state.data.limit}
+          />
           {this.state.data.buttons.map((eachButton, index) => {
             return (
               <DisplayButton
